@@ -1,6 +1,6 @@
 <?php
 
-namespace Xcurd\Commands;
+namespace Tareq\Xcurd\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\GeneratorCommand;
