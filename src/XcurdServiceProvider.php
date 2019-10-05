@@ -14,14 +14,6 @@ class XcurdServiceProvider extends ServiceProvider
 	            Commands\Xcurd::class,
 	        ]);
     	}
-
-    	$this->app->bind('Tareq\Xcurd\Helpers\Xform', function() {
-		    return new Xform();
-		});
-
-		$this->app->bind('Tareq\Xcurd\Helpers\Xtable', function() {
-		    return new Xtable();
-		});
         
     }
 

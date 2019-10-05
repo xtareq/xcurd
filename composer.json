@@ -15,5 +15,16 @@
         "psr-4": {
             "Tareq\\Xcurd\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tareq\\Xcurd\\XcurdServiceProvider"
+            ],
+            "aliases": {
+                "Xform": "Tareq\\Xcurd\\Xform",
+                "Xtable": "Tareq\\Xcurd\\Xtable"
+            }
+        }
     }
 }
