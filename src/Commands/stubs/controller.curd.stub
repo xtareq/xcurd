@@ -1,0 +1,95 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyFullModelClass;
+use Illuminate\Http\Request;
+use DummyRootNamespaceHttp\Controllers\Controller;
+use Tareq\Xcurd\Xtable;
+use Tareq\Xcurd\Xform;
+
+class DummyClass extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $data['table']= Xtable::grid('col-md-12')->model('DummyModelClass');
+        return view('ViewPath.index',$data);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+       $data['form'] = Xform::createForm('DummyModelClass');
+       return view('ViewPath.create',$data);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $save = Xform::save('DummyModelClass',$request); //return boolean
+        return $save?redirect()->route('DummyModelVariable.index')->with("msg",['Success','DummyModelClass updated successfully!']):redirect()->back()->with("msg",['Error','Something wrong!']);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \DummyFullModelClass  $DummyModelVariable
+     * @return \Illuminate\Http\Response
+     */
+    public function show(DummyModelClass $DummyModelVariable)
+    {
+        $data['ModelInLower']= $DummyModelVariable;
+        return view('ViewPath.edit',$data);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \DummyFullModelClass  $DummyModelVariable
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(DummyModelClass $DummyModelVariable)
+    {
+        $data['model'] = $DummyModelVariable;
+        $data['form']= Xform::editForm($DummyModelVariable);
+        return view('ViewPath.edit',$data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \DummyFullModelClass  $DummyModelVariable
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, DummyModelClass $DummyModelVariable)
+    {
+        $update = Xform::update($DummyModelVariable,$request);
+        return $update?redirect()->route('DummyModelVariable.index')->with("msg",['Success','DummyModelClass updated successfully!']):redirect()->back()->with("msg",['Error','Something wrong!']);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \DummyFullModelClass  $DummyModelVariable
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(DummyModelClass $DummyModelVariable)
+    {
+        return $DummyModelVariable->delete()?redirect()->back()->with("msg",['Success','DummyModelClass delete successfully!']):redirect()->back()->with("msg",['Error','Something wrong!']);
+    }
+}

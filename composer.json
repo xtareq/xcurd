@@ -1,0 +1,19 @@
+{
+    "name": "tareq/xcurd",
+    "description": "Easy Curd",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Xtareq",
+            "email": "xtrinsic96@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+   "autoload": {
+        "psr-4": {
+            "Tareq\\Xcurd\\": "src/"
+        }
+    }
+}
