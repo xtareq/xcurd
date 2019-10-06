@@ -203,7 +203,7 @@ class Xcurd extends GeneratorCommand
 
                 $arr =[
                     'DummyRoute' =>$routeName,
-                    'DummyLayout' => $rootView.'.layout.app',
+                    'DummyLayout' => 'layout.app',
                     'DummyModelClass' => class_basename($modelClass),
                     'DummyModelVariable' => lcfirst(class_basename($modelClass)),
                 ];
