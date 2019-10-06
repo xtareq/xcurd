@@ -3,7 +3,7 @@
 namespace Tareq\Xcurd;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Route;
+use Illuminate\Support\Facades\Route;
 
 class Xtable
 {
