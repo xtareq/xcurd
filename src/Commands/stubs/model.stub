@@ -1,0 +1,12 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Database\Eloquent\Model;
+
+class DummyClass extends Model
+{
+    public $form_fields=[];
+    public $table_fields=[];
+    public $config=[];
+}

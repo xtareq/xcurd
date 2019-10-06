@@ -2,6 +2,8 @@
 
 namespace Tareq\Xcurd;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Route;
 
 class Xtable
 {
@@ -20,6 +22,8 @@ class Xtable
 	public $data;
 	public static $model;
 	public static $modelName;
+	public static $routeName;
+	public static $modelFullPath;
 
 	public function __construct()
 	{
@@ -57,12 +61,28 @@ class Xtable
 	    return $mn;
 	}
 
+	public static function parseRoute($action, $param =null)
+	{
+   		$arr = get_class_vars(static::$model);
+   		$routeName = "";
+		if(Arr::has($arr,'routeNamePrefix')){
+			$routeName .= Arr::get($arr,'routeNamePrefix').".";
+		}
+		$routeName.= static::$modelName.".".$action;
+
+		return Route::has($routeName)?$param != null?route($routeName,$param):route($routeName):null;
+		
+	}
+
+
+
+
 
 	public static function tableCol($arr)
 	{
 		$data = '';
-		if(\Route::has(static::$modelName.'.create')){
-		$data .= '<a href="'.route(static::$modelName.'.create').'" class="btn btn-success pull-right">+ New</a>';
+		if(static::parseRoute('create') != null){
+		$data .= '<a href="'.static::parseRoute('create').'" class="btn btn-success pull-right">+ New</a>';
 		}
 		$data .= '<table class="table table-bordered table-condensed table-striped">';
 		$data .= '<thead><tr>';
@@ -103,15 +123,15 @@ class Xtable
 				}
 			}	
 			$data .= '<td>';
-			if(\Route::has(static::$modelName.'.show')){
-				$data .= '<a href="'.route(static::$modelName.'.show',$result).'" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-eye"></i> View</a>';
+			if(static::parseRoute('show') != null){
+				$data .= '<a href="'.static::parseRoute('show',$result).'" class="btn btn-info" style="border-radius:0px;"><i class="fa fa-eye"></i> View</a>';
 			}
-			if(\Route::has(static::$modelName.'.edit')){
-				$data .= '<a href="'.route(static::$modelName.'.edit',$result).'" class="btn btn-warning" style="border-radius:0px;"><i class="fa fa-edit"></i> Edit</a>';
+			if(static::parseRoute('edit') != null){
+				$data .= '<a href="'.static::parseRoute('edit',$result).'" class="btn btn-warning" style="border-radius:0px;"><i class="fa fa-edit"></i> Edit</a>';
 			}
-			if( \Route::has(static::$modelName.'.destroy')){
-			$data .= '<a href="'.route(static::$modelName.'.destroy',$result).'" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('."'delete-".$result->id."'".').submit();" style="border-radius:0px;">x</a>';
-			$data .='<form id="delete-'.$result->id.'" action="'.route(static::$modelName.'.destroy',$result).'" method="post">';
+			if( static::parseRoute('destroy') != null){
+			$data .= '<a href="'.static::parseRoute('destroy',$result).'" class="btn btn-danger" onclick="event.preventDefault();document.getElementById('."'delete-".$result->id."'".').submit();" style="border-radius:0px;">x</a>';
+			$data .='<form id="delete-'.$result->id.'" action="'.static::parseRoute('destroy',$result).'" method="post">';
 			$data .= csrf_field();
 			$data .= method_field('DELETE');
 			$data .= '</form>';

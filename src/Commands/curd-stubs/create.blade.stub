@@ -1,10 +1,10 @@
-@extends('layout.app')
+@extends('DummyLayout')
 
 
 @section('content')
 
 <div class="row">
-	<form action="{{route('model.store')}}" method="post" enctype="multipart/form-data">
+	<form action="{{route('DummyRoute.create')}}" method="post" enctype="multipart/form-data">
 		@csrf
 		{!!$form!!}
 

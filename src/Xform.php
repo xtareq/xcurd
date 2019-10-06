@@ -105,12 +105,15 @@ use Illuminate\Support\Str;
     $mn = '\App\\'.$modelName;
     return $mn;
   }
+
+
   public static function grid($grid)
   {
     static::$grid = $grid;
     static::$hasGrid = true;
     return new static;
   }
+
 
    public static function open($action,$arr=null,$entype=false)
    {
@@ -141,14 +144,12 @@ use Illuminate\Support\Str;
      $data .= '<div class="form-group">';
        if($type != 'submit')
          $data .= '<label for="'.$arr['name'].'">'.$arr['label'].':</label>';
-
       if($type=='textarea'):
           $data .= '<textarea name="'.$arr['name'].'" class="form-control" id="'.$arr['name'].'" placeholder="'.$arr['label'].'">'.$value.'</textarea>';
       elseif($type=='select'):
           $data .= '<select name="'.$arr['name'].'" class="form-control" id="'.$arr['name'].'" >';
           $data .= '<option >--select--</option>';
           if ($value instanceof \Illuminate\Database\Eloquent\Collection) {
-
             if(in_array('selected', array_keys($arr))){
               foreach($value as $val){
                 if($val->id == $arr['selected']){
