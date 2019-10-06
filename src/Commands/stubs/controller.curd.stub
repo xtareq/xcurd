@@ -64,7 +64,7 @@ class DummyClass extends Controller
      */
     public function edit(DummyModelClass $DummyModelVariable)
     {
-        $data['model'] = $DummyModelVariable;
+        $data['ModelInLower'] = $DummyModelVariable;
         $data['form']= Xform::editForm($DummyModelVariable);
         return view('ViewPath.edit',$data);
     }
