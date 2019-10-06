@@ -11,6 +11,7 @@ class XcurdServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
 	        $this->commands([
 	            Commands\Xcurd::class,
+                Commands\Xmodel::class,
 	        ]);
     	}
         

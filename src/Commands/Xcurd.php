@@ -136,7 +136,7 @@ class Xcurd extends GeneratorCommand
                 if(Arr::has($arr,'routeNamePrefix')){
                     $routeName .= Arr::get($arr,'routeNamePrefix').".";
                 }
-                $routeName.= lcfirst(class_basename($modelClass)).".";
+                $routeName.= lcfirst(class_basename($modelClass));
 
                 $arr =[
                     'DummyRoute' =>$routeName,
@@ -199,7 +199,7 @@ class Xcurd extends GeneratorCommand
                 if(Arr::has($arr,'routeNamePrefix')){
                     $routeName .= Arr::get($arr,'routeNamePrefix').".";
                 }
-                $routeName.= lcfirst(class_basename($modelClass)).".";
+                $routeName.= lcfirst(class_basename($modelClass));
 
                 $arr =[
                     'DummyRoute' =>$routeName,
