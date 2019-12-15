@@ -12,16 +12,15 @@ Xcurd is crud generetor for laravel.With xcurd you can easily make curd operatio
 
 # Installation
 Xcurd can be install by this composer command
-```
-    composer require tareq/xcurd
-```
+  ```php
+  composer require tareq/xcurd
+  ```
 1. Install xcurd package from composer in your laravel app.
 2. Create a xmodel by this php artisan command 
-  ```
+  ```php
   php artisan make:xmodel Blog
   ```
 3. Make changes in your model like form fields and display table fields
-...
 ```PHP
 class Blog extends Model
 {
@@ -37,5 +36,5 @@ class Blog extends Model
 
 }
 ```
-...
+
 
