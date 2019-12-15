@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-	  public $routeNamePrefix="";//if route hav prefix
+    public $routeNamePrefix="";//if route hav prefix
     public $form_fields=['name'=>'text']; //curd form fields
     public $table_fields=['name']; //curd table fields
 }
